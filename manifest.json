@@ -1,0 +1,10 @@
+{
+  "name": "Gamer Bazar",
+  "short_name": "Gamer Bazar",
+  "start_url": "/gamer-bazar/",
+  "scope": "/gamer-bazar/",
+  "display": "standalone",
+  "background_color": "#071426",
+  "theme_color": "#071426",
+  "description": "Gamer Bazar Free Fire Top Up"
+}
