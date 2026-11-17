@@ -3,130 +3,475 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gamer Bazar</title>
-  <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#071426">
+<title>Gamer Bazar</title>
+<link rel="manifest" href="manifest.json">
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#071426;color:white;font-family:Arial,sans-serif;padding-bottom:75px}
-header{background:#102644;padding:18px;font-size:24px;font-weight:bold;color:#35c9ff}
-header small{display:block;font-size:12px;color:#b9d8ed;margin-top:5px}
-.hero{margin:15px;padding:20px;border-radius:14px;background:linear-gradient(120deg,#0758a8,#102644)}
-.hero h2{margin-top:0}
-h3{margin:20px 15px 10px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 15px}
-.card{background:#122944;border:1px solid #244568;border-radius:12px;padding:15px;text-align:center}
-.card h4{margin:8px 0;color:#fff}
-.card p{color:#36c9ff;font-weight:bold}
-button{background:#087ee5;color:white;border:0;padding:10px 18px;border-radius:8px;font-weight:bold}
-.info{margin:15px;padding:15px;background:#122944;border-radius:12px}
-nav{position:fixed;bottom:0;left:0;right:0;background:#102644;display:flex;justify-content:space-around;padding:12px 2px;font-size:11px}
-nav span{text-align:center;color:#b9d8ed}
+body{
+ margin:0;background:#071426;color:white;
+ font-family:Arial,sans-serif;padding-bottom:80px
+}
+header{
+ background:#102644;padding:16px;
+ display:flex;justify-content:space-between;
+ align-items:center;border-bottom:1px solid #244560
+}
+.logo{font-size:23px;font-weight:bold;color:#39caff}
+.logo small{display:block;font-size:11px;color:#b9d8ed}
+.container{padding:15px}
+.banner{
+ background:linear-gradient(135deg,#075888,#102644);
+ padding:22px;border-radius:16px;margin-bottom:18px;
+ border:1px solid #27618a
+}
+.banner h2{margin:0 0 8px}
+.banner p{color:#d4eafa}
+h3{font-size:17px;margin:22px 0 12px}
+.grid{
+ display:grid;grid-template-columns:repeat(2,1fr);
+ gap:12px
+}
+.card{
+ background:#122944;border:1px solid #244560;
+ border-radius:13px;padding:15px;text-align:center;
+ min-width:0
+}
+.card .emoji{font-size:30px;margin-bottom:9px}
+.card h4{font-size:14px;margin:5px 0 8px}
+.card p{font-size:12px;color:#b9d8ed}
+button{
+ background:#087ee5;color:white;border:0;
+ padding:11px 14px;border-radius:8px;
+ font-weight:bold;cursor:pointer
+}
+.card button{width:100%;margin-top:8px}
+button:active{opacity:.8}
+.section{margin-bottom:22px}
+.small-banner{
+ background:#193653;padding:16px;
+ border-radius:12px;margin:10px 0;
+ border:1px solid #315778
+}
+.small-banner p{color:#b9d8ed;font-size:13px}
+.page{display:none}
+.page.active{display:block}
+.back{margin-bottom:15px;background:#244560}
+.product{
+ background:#122944;padding:13px;
+ border:1px solid #244560;border-radius:10px;
+ text-align:center
+}
+.product strong{display:block;font-size:14px}
+.price{color:#39caff;font-weight:bold;margin:8px 0}
+.product.selected{border:2px solid #39caff;background:#153b5c}
+input{
+ width:100%;padding:13px;margin:8px 0 14px;
+ border:1px solid #34516d;border-radius:8px;
+ background:#102644;color:white
+}
+.info{
+ background:#122944;padding:15px;
+ border-radius:12px;margin:12px 0;
+ border:1px solid #244560
+}
+.order-row{
+ background:#122944;padding:13px;border-radius:10px;
+ margin:10px 0;font-size:13px
+}
+.status{color:#36d69b;font-weight:bold}
+nav{
+ position:fixed;bottom:0;left:0;right:0;
+ background:#102644;display:flex;
+ justify-content:space-around;align-items:center;
+ padding:9px 2px;border-top:1px solid #31516c;
+ z-index:10
+}
+nav button{
+ background:transparent;color:#b9d8ed;
+ padding:6px 2px;font-size:10px;
+ display:flex;flex-direction:column;gap:5px;
+ align-items:center
+}
+nav button.active{color:#39caff}
+nav span{font-size:19px}
+.hidden{display:none}
 </style>
 </head>
-<body>
-<header>🎮 GAMER BAZAR
-<small>Free Fire Top Up at Best Prices</small></header>
 
-<section class="hero">
-<h2>Welcome to Gamer Bazar!</h2>
-<p>সহজেই কিনুন Free Fire Diamonds</p>
-<button onclick="document.getElementById('products').scrollIntoView()">TOP UP NOW</button>
-</section>
+<body>
+
+<header>
+ <div class="logo">
+  GAMER BAZAR
+  <small>Top up at wholesale prices</small>
+ </div>
+ <button onclick="openPage('profile')">👤</button>
+</header>
+
+<!-- HOME PAGE -->
+<div id="home" class="page active">
+ <div class="container">
+
+  <div class="banner">
+   <h2>Welcome to Gamer Bazar!</h2>
+   <p>Your trusted gaming top-up destination</p>
+   <button onclick="openPage('uid')">TOP UP NOW</button>
+  </div>
+
+  <div class="section">
+   <h3>How to Top Up Diamonds from our Website</h3>
+   <div class="small-banner">
+    <p>1. Select your top-up service</p>
+    <p>2. Select your diamond package</p>
+    <p>3. Enter your Player UID</p>
+    <p>4. Follow the order instructions</p>
+   </div>
+  </div>
+
+  <h3>Our Services</h3>
+  <div class="grid">
+
+   <div class="card" onclick="openPage('uid')">
+    <div class="emoji">💎</div>
+    <h4>UIDCODE TOP UP</h4>
+    <p>Free Fire Bangladesh</p>
+    <button>TOP UP</button>
+   </div>
+
+   <div class="card" onclick="openPage('indonesia')">
+    <div class="emoji">🌏</div>
+    <h4>INDONESIA TOPUP</h4>
+    <p>Free Fire Indonesia</p>
+    <button>TOP UP</button>
+   </div>
+
+   <div class="card" onclick="openPage('coins')">
+    <div class="emoji">🪙</div>
+    <h4>Free Diamond by Coin</h4>
+    <p>Earn coins</p>
+    <button>Explore</button>
+   </div>
+
+   <div class="card" onclick="openPage('smm')">
+    <div class="emoji">📱</div>
+    <h4>SMM ORDERS</h4>
+    <p>Social media services</p>
+    <button>Explore</button>
+   </div>
+
+   <div class="card" onclick="openPage('refer')">
+    <div class="emoji">🎁</div>
+    <h4>REFER A FRIEND</h4>
+    <p>Earn coins by referring</p>
+    <button>Explore</button>
+   </div>
+
+   <div class="card" onclick="openPage('uid')">
+    <div class="emoji">🎮</div>
+    <h4>OTHER GAMES</h4>
+    <p>More games coming soon</p>
+    <button>Explore</button>
+   </div>
+
+  </div>
 
   <h3>Featured Products</h3>
-
-<div class="grid" id="products">
-
-  <div class="card">
-    <h4>25 Diamonds</h4>
-    <p>৳20</p>
-    <button onclick="order('25 Diamonds', 20)">Buy Now</button>
-  </div>
-
-  <div class="card">
-    <h4>50 Diamonds</h4>
-    <p>৳35</p>
-    <button onclick="order('50 Diamonds', 35)">Buy Now</button>
-  </div>
-
-  <div class="card">
-    <h4>100 Diamonds</h4>
-    <p>৳75</p>
-    <button onclick="order('100 Diamonds', 75)">Buy Now</button>
-  </div>
-
-  <div class="card">
-    <h4>115 Diamonds</h4>
-    <p>৳79</p>
-    <button onclick="order('115 Diamonds', 79)">Buy Now</button>
-  </div>
-
-  <div class="card">
-    <h4>240 Diamonds</h4>
-    <p>৳158</p>
-    <button onclick="order('240 Diamonds', 158)">Buy Now</button>
-  </div>
-
-  <div class="card">
-    <h4>355 Diamonds</h4>
-    <p>৳237</p>
-    <button onclick="order('355 Diamonds', 237)">Buy Now</button>
-  </div>
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("sw.js");
-  });
-}
-</script>
-  <div class="card">
+  <div class="grid">
+   <div class="card">
+    <div class="emoji">🎫</div>
+    <h4>LEVEL UP PASS</h4>
+    <p>Free Fire</p>
+    <button onclick="openPage('uid')">View</button>
+   </div>
+   <div class="card">
+    <div class="emoji">🔥</div>
     <h4>Weekly Membership</h4>
-    <p>৳158</p>
-    <button onclick="order('Weekly Membership', 158)">Buy Now</button>
+    <p>Free Fire</p>
+    <button onclick="openPage('uid')">View</button>
+   </div>
   </div>
 
-  <div class="card">
-    <h4>Monthly Membership</h4>
-    <p>৳790</p>
-    <button onclick="order('Monthly Membership', 790)">Buy Now</button>
+  <div class="small-banner">
+   <h3>TRANSACTION ID NOT FOUND?</h3>
+   <p>Contact the admin for assistance.</p>
+   <button onclick="openPage('profile')">CONTACT ADMIN</button>
   </div>
 
+  <h3>Latest Orders</h3>
+  <div class="order-row">
+   T***a A***r<br>
+   115 Diamonds - 79.00 ৳<br>
+   <span class="status">COMPLETED</span>
+   <p>নমুনা অর্ডার</p>
+  </div>
+  <div class="order-row">
+   S***T S***N<br>
+   50 Diamonds - 35.00 ৳<br>
+   <span class="status">COMPLETED</span>
+   <p>নমুনা অর্ডার</p>
+  </div>
+
+  <div class="small-banner">
+   <h3>💬 Live Chat</h3>
+   <p>Customer support coming soon.</p>
+  </div>
+
+ </div>
 </div>
 
-<h3>Other Services</h3>
-<div class="grid">
-  <div class="card"><h4>SMM Orders</h4><p>Coming Soon</p></div>
-  <div class="card"><h4>Refer a Friend</h4><p>Coming Soon</p></div>
-  <div class="card"><h4>Free Diamonds by Coins</h4><p>Coming Soon</p></div>
-  <div class="card"><h4>Indonesia Top Up</h4><p>Coming Soon</p></div>
+<!-- UID TOPUP PAGE -->
+<div id="uid" class="page">
+ <div class="container">
+  <button class="back" onclick="openPage('home')">← Back to Home</button>
+  <h2>💎 UIDCODE TOP UP</h2>
+  <p>Free Fire - Bangladesh</p>
+
+  <div class="info">
+   <h3>Select Recharge</h3>
+   <div class="grid" id="packages"></div>
+  </div>
+
+  <div class="info">
+   <h3>Enter Player UID</h3>
+   <input id="playerUID" type="text" placeholder="Enter Free Fire Player UID">
+   <button style="width:100%" onclick="placeDemoOrder()">Continue</button>
+   <p style="font-size:11px;color:#b9d8ed">
+    এটি ডেমো অর্ডার। এখনো UID যাচাই বা ডেলিভারি চালু হয়নি।
+   </p>
+  </div>
+ </div>
 </div>
 
-<div class="info">
-  <h3>Important Notice</h3>
-  <p>This is the initial demo website of Gamer Bazar. No real orders or payments are processed here yet.</p>
+<!-- INDONESIA PAGE -->
+<div id="indonesia" class="page">
+ <div class="container">
+  <button class="back" onclick="openPage('home')">← Back</button>
+  <h2>🇮🇩 INDONESIA TOPUP</h2>
+  <div class="info">
+   <h3>Free Fire Indonesia</h3>
+   <p>Indonesia top-up service coming soon.</p>
+  </div>
+ </div>
+</div>
+
+<!-- ADD MONEY PAGE -->
+<div id="addmoney" class="page">
+ <div class="container">
+  <h2>💰 Add Money</h2>
+  <div class="info">
+   <p>Wallet balance: ৳0.00</p>
+   <p>Wallet deposit service is not active yet.</p>
+  </div>
+ </div>
+</div>
+
+<!-- ORDERS PAGE -->
+<div id="orders" class="page">
+ <div class="container">
+  <h2>📦 My Orders</h2>
+  <div class="info">
+   <p>আপনার কোনো বাস্তব অর্ডার এখনো নেই।</p>
+  </div>
+ </div>
+</div>
+
+<!-- CODES PAGE -->
+<div id="codes" class="page">
+ <div class="container">
+  <h2>🎟️ Codes</h2>
+  <div class="info">
+   <p>Redeem codes coming soon.</p>
+  </div>
+ </div>
+</div>
+
+<!-- COINS PAGE -->
+<div id="coins" class="page">
+ <div class="container">
+  <h2>🪙 Coins</h2>
+  <div class="info">
+   <p>Your demo coin balance: 0</p>
+   <p>Coin rewards are not active yet.</p>
+  </div>
+  <button onclick="openPage('refer')">Refer a Friend</button>
+ </div>
+</div>
+
+<!-- REFER PAGE -->
+<div id="refer" class="page">
+ <div class="container">
+  <h2>🎁 Refer a Friend</h2>
+  <div class="info">
+   <p>Invite friends and earn coins.</p>
+   <p>Referral rewards coming soon.</p>
+  </div>
+ </div>
+</div>
+
+<!-- SMM PAGE -->
+<div id="smm" class="page">
+ <div class="container">
+  <h2>📱 SMM Orders</h2>
+  <div class="info">
+   <p>Social media services coming soon.</p>
+  </div>
+ </div>
+</div>
+
+<!-- PROFILE PAGE -->
+<div id="profile" class="page">
+ <div class="container">
+  <h2>👤 My Profile</h2>
+  <div class="info">
+   <p id="user-info">আপনি Login করেননি</p>
+   <button id="google-login">Google দিয়ে Login</button>
+   <button id="logout" class="hidden">Logout</button>
+  </div>
+ </div>
 </div>
 
 <nav>
-<span>🏠<br>Home</span>
-<span>💰<br>Add Money</span>
-  
-<span>📦<br>Orders</span>
-<span>🎟️<br>Codes</span>
-<span>🪙<br>Coins</span>
-<span>👤<br>Profile</span>
+ <button class="active" data-page="home" onclick="openPage('home')">
+  <span>🏠</span>Home
+ </button>
+ <button data-page="addmoney" onclick="openPage('addmoney')">
+  <span>➕</span>Add Money
+ </button>
+ <button data-page="orders" onclick="openPage('orders')">
+  <span>📦</span>Orders
+ </button>
+ <button data-page="codes" onclick="openPage('codes')">
+  <span>🎟️</span>Codes
+ </button>
+ <button data-page="coins" onclick="openPage('coins')">
+  <span>🪙</span>Coins
+ </button>
+ <button data-page="profile" onclick="openPage('profile')">
+  <span>👤</span>Profile
+ </button>
 </nav>
 
 <script>
-function order(product,price){
-alert(product+" - ৳"+price+"\nএটি শুধু ডেমো। বাস্তব অর্ডার চালু হয়নি।");
+const packages=[
+ ["25 Diamonds",20],["50 Diamonds",35],
+ ["100 Diamonds",75],["115 Diamonds",79],
+ ["240 Diamonds",158],["355 Diamonds",237],
+ ["480 Diamonds",316],["505 Diamonds",336],
+ ["610 Diamonds",400],["725 Diamonds",479],
+ ["850 Diamonds",558],["1015 Diamonds",680],
+ ["1240 Diamonds",800],["1850 Diamonds",1200],
+ ["2530 Diamonds",1610],["5060 Diamonds",3220],
+ ["10120 Diamonds",6440],
+ ["Weekly Membership",158],
+ ["Weekly Lite",40],
+ ["Monthly Membership",790]
+];
+
+let selectedPackage=null;
+
+const packageBox=document.getElementById("packages");
+
+packages.forEach((item,index)=>{
+ const card=document.createElement("div");
+ card.className="product";
+ card.innerHTML=
+  "<strong>"+item[0]+"</strong>"+
+  "<div class='price'>"+item[1]+" TK</div>";
+ card.onclick=()=>{
+  document.querySelectorAll(".product").forEach(p=>p.classList.remove("selected"));
+  card.classList.add("selected");
+  selectedPackage=item;
+ };
+ packageBox.appendChild(card);
+});
+
+function openPage(page){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ const target=document.getElementById(page);
+ if(target)target.classList.add("active");
+
+ document.querySelectorAll("nav button").forEach(b=>{
+  b.classList.toggle("active",b.dataset.page===page);
+ });
+ window.scrollTo(0,0);
 }
 
-<div id="login-area" style="padding:15px;text-align:center">
-  <button id="google-login">Google দিয়ে Login</button>
-  <p id="user-info">আপনি Login করেননি</p>
-  <button id="logout" style="display:none">Logout</button>
-</div>
+function placeDemoOrder(){
+ const uid=document.getElementById("playerUID").value.trim();
+
+ if(!selectedPackage){
+  alert("প্রথমে একটি প্যাকেজ নির্বাচন করুন।");
+  return;
+ }
+ if(!/^[0-9]{5,20}$/.test(uid)){
+  alert("সঠিক Player UID লিখুন।");
+  return;
+ }
+
+ alert(
+  "ডেমো অর্ডার তৈরি হয়নি।\n"+
+  "প্যাকেজ: "+selectedPackage[0]+
+  "\nমূল্য: ৳"+selectedPackage[1]+
+  "\nUID: "+uid+
+  "\nবাস্তব অর্ডার এখনো চালু হয়নি।"
+ );
+}
 </script>
+
+<!-- Firebase Google Login -->
+<script type="module">
+import {initializeApp}
+ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+ getAuth,GoogleAuthProvider,signInWithRedirect,
+ getRedirectResult,onAuthStateChanged,signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig={
+ apiKey:"AIzaSyBZgHYAqcbf4FP1cA0M5nblDbGFlye9iH4",
+ authDomain:"fahim-d606c.firebaseapp.com",
+ projectId:"fahim-d606c",
+ storageBucket:"fahim-d606c.firebasestorage.app",
+ messagingSenderId:"780598083996",
+ appId:"1:780598083996:web:1122099bb23bba3e94c859",
+ measurementId:"G-8E8ZR8H8QT"
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const provider=new GoogleAuthProvider();
+
+document.getElementById("google-login").onclick=()=>{
+ signInWithRedirect(auth,provider);
+};
+
+document.getElementById("logout").onclick=()=>{
+ signOut(auth);
+};
+
+getRedirectResult(auth).catch(error=>{
+ alert("Login সমস্যা: "+error.message);
+});
+
+onAuthStateChanged(auth,user=>{
+ const info=document.getElementById("user-info");
+ const login=document.getElementById("google-login");
+ const logout=document.getElementById("logout");
+
+ if(user){
+  info.textContent="স্বাগতম, "+(user.displayName||"User");
+  login.classList.add("hidden");
+  logout.classList.remove("hidden");
+ }else{
+  info.textContent="আপনি Login করেননি";
+  login.classList.remove("hidden");
+  logout.classList.add("hidden");
+ }
+});
+</script>
+
 </body>
 </html>
