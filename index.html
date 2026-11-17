@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gamer Bazar</title>
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#071426">
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#071426;color:white;font-family:Arial,sans-serif;padding-bottom:75px}
@@ -71,7 +73,13 @@ nav span{text-align:center;color:#b9d8ed}
     <p>৳237</p>
     <button onclick="order('355 Diamonds', 237)">Buy Now</button>
   </div>
-
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js");
+  });
+}
+</script>
   <div class="card">
     <h4>Weekly Membership</h4>
     <p>৳158</p>
