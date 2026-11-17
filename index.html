@@ -3,66 +3,467 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gamer Bazar - Recharge</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<title>Gamer Bazar</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#fff;color:#f47716;font-family:Arial,sans-serif;padding:16px;padding-bottom:85px}
-h2{font-size:22px;margin:8px 0 5px}
-.sub{color:#888;font-size:13px;margin-bottom:18px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
-.item{border:1px solid #f5d9c4;border-radius:12px;padding:13px 9px;background:#fff;box-shadow:0 2px 6px #f5eee9;display:flex;align-items:center;gap:9px;min-height:76px}
-.diamond{font-size:24px}
-.info{flex:1;min-width:0}
-.name{font-weight:bold;color:#333;font-size:13px}
-.price{color:#f47716;font-weight:bold;font-size:13px;margin-top:6px}
-.item button{background:#fff1e5;color:#f47716;border:1px solid #ffb477;border-radius:7px;padding:6px 8px;font-size:11px;font-weight:bold}
-.bottom{position:fixed;bottom:0;left:0;width:100%;background:white;border-top:1px solid #eee;display:flex;justify-content:space-around;padding:12px 3px}
-.bottom span{text-align:center;font-size:12px;color:#f47716}
-.bottom b{display:block;font-size:21px;margin-bottom:3px}
+body{
+ margin:0;background:#f8f9fb;color:#222;
+ font-family:Arial,"Noto Sans Bengali",sans-serif;
+ padding-bottom:85px
+}
+:root{--orange:#ff7900;--light:#fff1e5;--gray:#777}
+header{
+ background:white;padding:15px;display:flex;
+ align-items:center;gap:12px;
+ box-shadow:0 2px 10px #0000000d;
+ position:sticky;top:0;z-index:5
+}
+.logo{
+ width:45px;height:45px;border-radius:50%;
+ background:var(--orange);color:white;
+ display:grid;place-items:center;
+ font-size:20px;font-weight:bold
+}
+.brand{font-size:19px;font-weight:800;color:var(--orange)}
+.tagline{font-size:11px;color:#777;margin-top:3px}
+main{max-width:600px;margin:auto;padding:15px}
+.page{display:none}
+.page.active{display:block}
+h2{font-size:20px;margin:12px 0;color:#333}
+p{line-height:1.5}
+.banner{
+ background:linear-gradient(120deg,#ff7900,#ff9e35);
+ color:white;border-radius:17px;padding:23px 18px;
+ margin:8px 0 20px
+}
+.banner h2{color:white;font-size:25px;margin:0 0 8px}
+.banner p{margin:0;font-size:13px}
+.section-title{font-size:17px;font-weight:bold;margin:20px 0 12px}
+.grid{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:11px
+}
+.service{
+ background:white;border-radius:13px;padding:17px 10px;
+ text-align:center;border:1px solid #eee;
+ cursor:pointer
+}
+.service .emoji{font-size:26px}
+.service strong{display:block;margin-top:8px}
+.card{
+ background:white;border:1px solid #eee;border-radius:13px;
+ padding:14px;margin-bottom:12px
+}
+.package{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:8px;background:white;border:1px solid #eee;
+ border-radius:12px;padding:12px;margin-bottom:9px
+}
+.diamond{
+ width:38px;height:38px;border-radius:10px;
+ background:#e9f7ff;display:grid;place-items:center;
+ font-size:20px;flex-shrink:0
+}
+.package-info{flex:1}
+.package-info strong{font-size:14px}
+.price{font-size:13px;color:var(--orange);font-weight:bold;margin-top:5px}
+button{
+ border:0;border-radius:9px;background:var(--orange);
+ color:white;padding:10px 14px;font-weight:bold;
+ cursor:pointer;font-size:13px
+}
+button.secondary{background:var(--light);color:var(--orange)}
+button.gray{background:#eee;color:#444}
+input,select,textarea{
+ width:100%;padding:13px;border:1px solid #ddd;
+ border-radius:9px;font-size:15px;margin:7px 0 14px;
+ background:white
+}
+label{font-size:13px;font-weight:bold}
+.small{font-size:12px;color:var(--gray)}
+.notice{
+ background:#fff5e9;border:1px solid #ffdfc0;
+ padding:12px;border-radius:10px;font-size:13px;
+ line-height:1.6;margin:12px 0
+}
+.bottom{
+ position:fixed;bottom:0;left:0;right:0;
+ background:white;box-shadow:0 -2px 12px #00000012;
+ display:flex;justify-content:space-around;
+ padding:9px 2px calc(9px + env(safe-area-inset-bottom));
+ z-index:10
+}
+.nav{
+ background:none;color:#777;padding:4px 2px;
+ display:flex;flex-direction:column;align-items:center;
+ gap:4px;font-size:10px;flex:1
+}
+.nav span{font-size:20px}
+.nav.active{color:var(--orange)}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.status{color:#b36a00;background:#fff0d9;padding:5px 8px;border-radius:7px;font-size:11px}
+hr{border:0;border-top:1px solid #eee;margin:14px 0}
+.hidden{display:none}
 </style>
 </head>
+
 <body>
 
-<h2>💎 Select Recharge</h2>
-<div class="sub">Select your diamond package</div>
+<header>
+ <div class="logo">GB</div>
+ <div>
+  <div class="brand">GAMER BAZAR</div>
+  <div class="tagline">Your Gaming Top-up Store</div>
+ </div>
+</header>
 
-<div class="grid" id="list"></div>
+<main>
 
-<div class="bottom">
-<span><b>⌂</b>Home</span>
-<span><b>▣</b>Add Money</span>
-<span><b>▤</b>Orders</span>
-</div>
+<!-- HOME -->
+<section class="page active" id="home">
+ <div class="banner">
+  <h2>Welcome to Gamer Bazar</h2>
+  <p>আপনার পছন্দের গেমিং টপ-আপ সেবা এক জায়গায়।</p>
+  <br>
+  <button class="secondary" onclick="showPage('recharge')">Recharge Now →</button>
+ </div>
+
+ <div class="section-title">আমাদের সার্ভিস</div>
+ <div class="grid">
+  <div class="service" onclick="showPage('recharge')">
+   <div class="emoji">💎</div><strong>Diamond</strong>
+  </div>
+  <div class="service" onclick="showPage('addmoney')">
+   <div class="emoji">💰</div><strong>Add Money</strong>
+  </div>
+  <div class="service" onclick="showPage('orders')">
+   <div class="emoji">📦</div><strong>My Orders</strong>
+  </div>
+  <div class="service" onclick="showPage('profile')">
+   <div class="emoji">👤</div><strong>My Profile</strong>
+  </div>
+ </div>
+
+ <div class="section-title">কেন Gamer Bazar?</div>
+ <div class="card">
+  <p>💎 বিভিন্ন ডায়মন্ড প্যাকেজ</p>
+  <p>📦 অর্ডারের তথ্য দেখার সুবিধা</p>
+  <p>🧾 পেমেন্ট তথ্য জমা দেওয়ার ফর্ম</p>
+  <p>📱 সহজ মোবাইল ব্যবহার</p>
+ </div>
+</section>
+
+<!-- RECHARGE -->
+<section class="page" id="recharge">
+ <h2>💎 Select Recharge</h2>
+ <p class="small">আপনার পছন্দের প্যাকেজ নির্বাচন করুন।</p>
+ <div id="packages"></div>
+</section>
+
+<!-- UID -->
+<section class="page" id="uidpage">
+ <h2>Player Information</h2>
+ <div class="card">
+  <div class="row">
+   <strong id="selectedName"></strong>
+   <strong id="selectedPrice" style="color:var(--orange)"></strong>
+  </div>
+  <hr>
+  <label>Free Fire Player UID</label>
+  <input id="playerUid" type="text" inputmode="numeric" placeholder="আপনার Player UID লিখুন">
+  <button style="width:100%" onclick="goPayment()">Continue</button>
+  <button class="gray" style="width:100%;margin-top:8px" onclick="showPage('recharge')">Back</button>
+ </div>
+</section>
+
+<!-- PAYMENT -->
+<section class="page" id="payment">
+ <h2>Payment Information</h2>
+ <div class="card">
+  <div class="row"><strong id="payPackage"></strong><strong id="payPrice" style="color:var(--orange)"></strong></div>
+  <p class="small">Player UID: <strong id="payUid"></strong></p>
+  <hr>
+  <div class="notice">
+   এটি এখনো প্রস্তুতিমূলক ফর্ম। এখানে কোনো বাস্তব পেমেন্ট নম্বর দেওয়া নেই।
+   পেমেন্ট ব্যবস্থা অভিভাবকের মাধ্যমে বৈধভাবে সেটআপ করার পর চালু করতে হবে।
+  </div>
+  <label>পেমেন্ট পদ্ধতি</label>
+  <select id="paymentMethod">
+   <option value="">নির্বাচন করুন</option>
+   <option>bKash</option>
+   <option>Nagad</option>
+  </select>
+  <label>Transaction ID</label>
+  <input id="trxId" placeholder="Transaction ID">
+  <label>প্রেরকের নম্বর</label>
+  <input id="senderNumber" inputmode="numeric" placeholder="পেমেন্ট প্রেরকের নম্বর">
+  <button style="width:100%" onclick="submitOrder()">Submit Order</button>
+  <p class="small">এই ফর্মের তথ্য শুধু এই ডিভাইসের ব্রাউজারে পরীক্ষামূলকভাবে রাখা হবে।</p>
+ </div>
+</section>
+
+<!-- ADD MONEY -->
+<section class="page" id="addmoney">
+ <h2>💰 Add Money</h2>
+ <div class="card">
+  <div class="notice">
+   Add Money সেবা এখনো চালু হয়নি। অভিভাবকের মাধ্যমে পেমেন্ট ব্যবস্থা তৈরি হলে এখানে চালু করা যাবে।
+  </div>
+  <label>টাকার পরিমাণ</label>
+  <input type="number" placeholder="Amount" disabled>
+  <button class="gray" disabled>Coming Soon</button>
+ </div>
+</section>
+
+<!-- ORDERS -->
+<section class="page" id="orders">
+ <h2>📦 My Orders</h2>
+ <div id="orderList"></div>
+</section>
+
+<!-- CARDS -->
+<section class="page" id="cards">
+ <h2>💳 Cards</h2>
+ <div class="card">
+  <p>আপনার কার্ড সুবিধা এখনো চালু হয়নি।</p>
+  <span class="status">Coming Soon</span>
+ </div>
+</section>
+
+<!-- COINS -->
+<section class="page" id="coins">
+ <h2>🪙 Coins</h2>
+ <div class="card">
+  <h2 style="color:var(--orange)">0 Coins</h2>
+  <p class="small">কয়েন সুবিধা ভবিষ্যতে যুক্ত করা হবে।</p>
+ </div>
+</section>
+
+<!-- PROFILE -->
+<section class="page" id="profile">
+ <h2>👤 My Profile</h2>
+ <div class="card">
+  <div class="logo">GB</div>
+  <h3>Gamer Bazar User</h3>
+  <p class="small">Guest Account</p>
+  <hr>
+  <p>মোট অর্ডার: <strong id="totalOrders">0</strong></p>
+  <p>অ্যাকাউন্ট: Guest</p>
+ </div>
+
+ <h2>Admin Panel Preview</h2>
+ <div class="notice">
+  এটি শুধু একই ডিভাইসে পরীক্ষামূলক অর্ডার দেখায়। এটি নিরাপদ Admin Login নয় এবং অন্য ব্যবহারকারীর অর্ডার দেখতে পারে না।
+  আসল Admin Panel-এর জন্য Firebase Authentication ও নিরাপদ সার্ভার নিয়ম প্রয়োজন।
+ </div>
+ <button onclick="showAdmin()" style="width:100%">View Local Test Orders</button>
+ <div id="adminArea" class="hidden">
+  <hr>
+  <h3>Local Test Orders</h3>
+  <div id="adminOrders"></div>
+ </div>
+</section>
+
+</main>
+
+<nav class="bottom">
+ <button class="nav active" data-page="home" onclick="showPage('home')"><span>⌂</span>Home</button>
+ <button class="nav" data-page="addmoney" onclick="showPage('addmoney')"><span>＋</span>Add Money</button>
+ <button class="nav" data-page="orders" onclick="showPage('orders')"><span>📦</span>Orders</button>
+ <button class="nav" data-page="cards" onclick="showPage('cards')"><span>▣</span>Cards</button>
+ <button class="nav" data-page="coins" onclick="showPage('coins')"><span>🪙</span>Coins</button>
+ <button class="nav" data-page="profile" onclick="showPage('profile')"><span>♙</span>Profile</button>
+</nav>
 
 <script>
-const packs=[
-["25 Diamonds","20 TK"],["50 Diamonds","35 TK"],
-["100 Diamonds","75 TK"],["115 Diamonds","79 TK"],
-["240 Diamonds","158 TK"],["355 Diamonds","237 TK"],
-["480 Diamonds","316 TK"],["505 Diamonds","336 TK"],
-["610 Diamonds","400 TK"],["725 Diamonds","479 TK"],
-["850 Diamonds","558 TK"],["1015 Diamonds","680 TK"],
-["1240 Diamonds","800 TK"],["1850 Diamonds","1200 TK"],
-["2530 Diamonds","1610 TK"],["5060 Diamonds","3220 TK"],
-["10120 Diamonds","6440 TK"],
-["Monthly Membership","790 TK"],
-["Weekly Membership","158 TK"],["Weekly Lite","40 TK"]
+const products = [
+ ["25 Diamonds",20],
+ ["50 Diamonds",35],
+ ["100 Diamonds",75],
+ ["115 Diamonds",79],
+ ["240 Diamonds",158],
+ ["355 Diamonds",237],
+ ["480 Diamonds",316],
+ ["505 Diamonds",336],
+ ["610 Diamonds",400],
+ ["725 Diamonds",479],
+ ["850 Diamonds",558],
+ ["1015 Diamonds",680],
+ ["1240 Diamonds",800],
+ ["1850 Diamonds",1200],
+ ["2530 Diamonds",1610],
+ ["5060 Diamonds",3220],
+ ["10120 Diamonds",6440],
+ ["Weekly Membership",158],
+ ["Weekly Lite",40],
+ ["Monthly Membership",790]
 ];
 
-document.getElementById("list").innerHTML=packs.map(p=>`
-<div class="item">
- <div class="diamond">💎</div>
- <div class="info">
-  <div class="name">${p[0]}</div>
-  <div class="price">${p[1]}</div>
- </div>
- <button onclick="selectPack('${p[0]}','${p[1]}')">SELECT</button>
-</div>`).join("");
+let selectedProduct = null;
+let orders = [];
 
-function selectPack(name,price){
- alert("Selected: "+name+"\nPrice: "+price+"\nএটি শুধু ডেমো।");
+try{
+ orders = JSON.parse(localStorage.getItem("gb_test_orders") || "[]");
+}catch(e){orders=[];}
+
+function saveOrders(){
+ localStorage.setItem("gb_test_orders",JSON.stringify(orders));
 }
+
+function showPage(id){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+
+ document.querySelectorAll(".nav").forEach(n=>{
+  n.classList.toggle("active",n.dataset.page===id);
+ });
+
+ if(id==="orders") renderOrders();
+ if(id==="profile") updateProfile();
+ window.scrollTo(0,0);
+}
+
+function renderPackages(){
+ const area=document.getElementById("packages");
+ area.innerHTML="";
+ products.forEach((p,i)=>{
+  area.innerHTML+=`
+   <div class="package">
+    <div class="diamond">💎</div>
+    <div class="package-info">
+     <strong>${p[0]}</strong>
+     <div class="price">৳ ${p[1]}</div>
+    </div>
+    <button onclick="selectProduct(${i})">Select</button>
+   </div>`;
+ });
+}
+
+function selectProduct(index){
+ selectedProduct=products[index];
+ document.getElementById("selectedName").textContent=selectedProduct[0];
+ document.getElementById("selectedPrice").textContent="৳ "+selectedProduct[1];
+ document.getElementById("playerUid").value="";
+ showPage("uidpage");
+}
+
+function goPayment(){
+ const uid=document.getElementById("playerUid").value.trim();
+
+ if(!uid){
+  alert("Player UID লিখুন");
+  return;
+ }
+ if(!/^[0-9]{5,20}$/.test(uid)){
+  alert("সঠিক Player UID লিখুন");
+  return;
+ }
+
+ document.getElementById("payPackage").textContent=selectedProduct[0];
+ document.getElementById("payPrice").textContent="৳ "+selectedProduct[1];
+ document.getElementById("payUid").textContent=uid;
+ showPage("payment");
+}
+
+function submitOrder(){
+ const method=document.getElementById("paymentMethod").value;
+ const trx=document.getElementById("trxId").value.trim();
+ const sender=document.getElementById("senderNumber").value.trim();
+
+ if(!method || !trx || !sender){
+  alert("সব তথ্য পূরণ করুন");
+  return;
+ }
+
+ const uid=document.getElementById("playerUid").value.trim();
+
+ const order={
+  id:"GB"+Date.now(),
+  product:selectedProduct[0],
+  price:selectedProduct[1],
+  uid:uid,
+  method:method,
+  trx:trx,
+  sender:sender,
+  status:"পরীক্ষামূলক জমা",
+  date:new Date().toLocaleString("bn-BD")
+ };
+
+ orders.unshift(order);
+ saveOrders();
+
+ alert("পরীক্ষামূলক অর্ডার এই ডিভাইসে সংরক্ষিত হয়েছে। এটি বাস্তব পেমেন্ট যাচাই বা ডায়মন্ড ডেলিভারি নয়।");
+
+ document.getElementById("trxId").value="";
+ document.getElementById("senderNumber").value="";
+ document.getElementById("paymentMethod").value="";
+
+ showPage("orders");
+}
+
+function renderOrders(){
+ const area=document.getElementById("orderList");
+
+ if(orders.length===0){
+  area.innerHTML='<div class="card">এখনো কোনো অর্ডার নেই।</div>';
+  return;
+ }
+
+ area.innerHTML=orders.map(o=>`
+  <div class="card">
+   <div class="row">
+    <strong>${o.product}</strong>
+    <span class="status">${o.status}</span>
+   </div>
+   <p>UID: ${escapeText(o.uid)}</p>
+   <p>মূল্য: ৳ ${o.price}</p>
+   <p class="small">Order ID: ${escapeText(o.id)}</p>
+   <p class="small">${escapeText(o.date)}</p>
+  </div>
+ `).join("");
+}
+
+function showAdmin(){
+ const area=document.getElementById("adminArea");
+ area.classList.toggle("hidden");
+
+ const list=document.getElementById("adminOrders");
+
+ if(orders.length===0){
+  list.innerHTML="<p>কোনো পরীক্ষামূলক অর্ডার নেই।</p>";
+  return;
+ }
+
+ list.innerHTML=orders.map(o=>`
+  <div class="card">
+   <strong>${o.product}</strong>
+   <p>UID: ${escapeText(o.uid)}</p>
+   <p>মূল্য: ৳ ${o.price}</p>
+   <p>পদ্ধতি: ${escapeText(o.method)}</p>
+   <p>Transaction ID: ${escapeText(o.trx)}</p>
+   <p>প্রেরক: ${escapeText(o.sender)}</p>
+   <span class="status">${o.status}</span>
+  </div>
+ `).join("");
+}
+
+function updateProfile(){
+ document.getElementById("totalOrders").textContent=orders.length;
+}
+
+function escapeText(value){
+ return String(value).replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
+}
+
+renderPackages();
+renderOrders();
+updateProfile();
 </script>
+
 </body>
 </html>
