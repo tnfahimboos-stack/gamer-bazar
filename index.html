@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gamer Bazar</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#071426;color:white;font-family:Arial,sans-serif;padding-bottom:75px}
+header{background:#102644;padding:18px;font-size:24px;font-weight:bold;color:#35c9ff}
+header small{display:block;font-size:12px;color:#b9d8ed;margin-top:5px}
+.hero{margin:15px;padding:20px;border-radius:14px;background:linear-gradient(120deg,#0758a8,#102644)}
+.hero h2{margin-top:0}
+h3{margin:20px 15px 10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 15px}
+.card{background:#122944;border:1px solid #244568;border-radius:12px;padding:15px;text-align:center}
+.card h4{margin:8px 0;color:#fff}
+.card p{color:#36c9ff;font-weight:bold}
+button{background:#087ee5;color:white;border:0;padding:10px 18px;border-radius:8px;font-weight:bold}
+.info{margin:15px;padding:15px;background:#122944;border-radius:12px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#102644;display:flex;justify-content:space-around;padding:12px 2px;font-size:11px}
+nav span{text-align:center;color:#b9d8ed}
+</style>
+</head>
+<body>
+<header>🎮 GAMER BAZAR
+<small>Free Fire Top Up at Best Prices</small></header>
+
+<section class="hero">
+<h2>Welcome to Gamer Bazar!</h2>
+<p>সহজেই কিনুন Free Fire Diamonds</p>
+<button onclick="document.getElementById('products').scrollIntoView()">TOP UP NOW</button>
+</section>
+
+<h3>🔥 Featured Products</h3>
+<div class="grid" id="products">
+<div class="card"><h4>💎 25 Diamonds</h4><p>৳20</p><button onclick="order('25 Diamonds',20)">Buy Now</button></div>
+<div class="card"><h4>💎 50 Diamonds</h4><p>৳35</p><button onclick="order('50 Diamonds',35)">Buy Now</button></div>
+<div class="card"><h4>💎 100 Diamonds</h4><p>৳75</p><button onclick="order('100 Diamonds',75)">Buy Now</button></div>
+<div class="card"><h4>💎 115 Diamonds</h4><p>৳79</p><button onclick="order('115 Diamonds',79)">Buy Now</button></div>
+<div class="card"><h4>💎 240 Diamonds</h4><p>৳158</p><button onclick="order('240 Diamonds',158)">Buy Now</button></div>
+<div class="card"><h4>💎 355 Diamonds</h4><p>৳237</p><button onclick="order('355 Diamonds',237)">Buy Now</button></div>
+<div class="card"><h4>💎 Weekly Membership</h4><p>৳158</p><button onclick="order('Weekly Membership',158)">Buy Now</button></div>
+<div class="card"><h4>💎 Monthly Membership</h4><p>৳790</p><button onclick="order('Monthly Membership',790)">Buy Now</button></div>
+</div>
+
+<h3>🎁 Other Services</h3>
+<div class="grid">
+<div class="card"><h4>🎮 SMM Orders</h4><p>Coming Soon</p></div>
+<div class="card"><h4>🎁 Refer a Friend</h4><p>Coming Soon</p></div>
+<div class="card"><h4>🪙 Free Diamonds by Coins</h4><p>Coming Soon</p></div>
+<div class="card"><h4>🌏 Indonesia Top Up</h4><p>Coming Soon</p></div>
+</div>
+
+<div class="info">
+<h3>📢 Important Notice</h3>
+<p>এটি Gamer Bazar-এর প্রাথমিক ডেমো ওয়েবসাইট। এখানে এখনো কোনো বাস্তব অর্ডার বা পেমেন্ট সম্পন্ন হয় না।</p>
+</div>
+
+<nav>
+<span>🏠<br>Home</span>
+<span>💰<br>Add Money</span>
+<span>📦<br>Orders</span>
+<span>🎟️<br>Codes</span>
+<span>🪙<br>Coins</span>
+<span>👤<br>Profile</span>
+</nav>
+
+<script>
+function order(product,price){
+alert(product+" - ৳"+price+"\nএটি শুধু ডেমো। বাস্তব অর্ডার চালু হয়নি।");
+}
+</script>
+</body>
+</html>
