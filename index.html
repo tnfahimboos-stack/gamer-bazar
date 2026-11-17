@@ -4,125 +4,64 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gamer Bazar</title>
+<title>Gamer Bazar - Recharge</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#071426;color:#fff;font-family:Arial,sans-serif}
-header{background:#102b4b;padding:18px;text-align:center;border-bottom:2px solid #00c8ff}
-header h1{color:#00d5ff;margin:0}
-header p{margin:8px 0 0;color:#c5e4ff}
-main{max-width:650px;margin:auto;padding:15px}
-.banner{background:linear-gradient(120deg,#0879c9,#10264b);padding:25px;border-radius:15px;text-align:center;margin-bottom:20px}
-h2{color:#00d5ff}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card,.package{background:#102744;border:1px solid #17649b;border-radius:12px;padding:15px;text-align:center}
-button{background:#008de8;color:white;border:0;padding:12px;border-radius:8px;font-weight:bold;cursor:pointer;width:100%;margin-top:10px}
-button:active{background:#00b9ff}
-.page{display:none}.page.active{display:block}
-input{width:100%;padding:13px;margin:8px 0;background:#102744;color:white;border:1px solid #1686bd;border-radius:8px}
-.package{margin:10px 0;text-align:left}
-footer{text-align:center;color:#91aac3;padding:25px}
-nav{position:sticky;bottom:0;background:#0d2340;display:flex;justify-content:space-around;padding:8px 2px}
-nav button{font-size:11px;padding:10px 3px;margin:0;background:#123657}
+body{margin:0;background:#fff;color:#f47716;font-family:Arial,sans-serif;padding:16px;padding-bottom:85px}
+h2{font-size:22px;margin:8px 0 5px}
+.sub{color:#888;font-size:13px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+.item{border:1px solid #f5d9c4;border-radius:12px;padding:13px 9px;background:#fff;box-shadow:0 2px 6px #f5eee9;display:flex;align-items:center;gap:9px;min-height:76px}
+.diamond{font-size:24px}
+.info{flex:1;min-width:0}
+.name{font-weight:bold;color:#333;font-size:13px}
+.price{color:#f47716;font-weight:bold;font-size:13px;margin-top:6px}
+.item button{background:#fff1e5;color:#f47716;border:1px solid #ffb477;border-radius:7px;padding:6px 8px;font-size:11px;font-weight:bold}
+.bottom{position:fixed;bottom:0;left:0;width:100%;background:white;border-top:1px solid #eee;display:flex;justify-content:space-around;padding:12px 3px}
+.bottom span{text-align:center;font-size:12px;color:#f47716}
+.bottom b{display:block;font-size:21px;margin-bottom:3px}
 </style>
 </head>
 <body>
-<header>
-<h1>🎮 GAMER BAZAR</h1>
-<p>Top up at wholesale prices</p>
-</header>
-<main>
-<section id="home" class="page active">
-<div class="banner">
-<h2>FREE FIRE TOP UP</h2>
-<p>How to top up diamonds from our WEBSITE</p>
-</div>
-<h2>Our Services</h2>
-<div class="grid">
-<div class="card">💎<h3>UIDCODE TOP UP</h3><button onclick="show('uid')">TOP UP</button></div>
-<div class="card">🌏<h3>Indonesia TOPUP</h3><button onclick="show('uid')">Open</button></div>
-<div class="card">🪙<h3>Free Diamond by Coin</h3><button onclick="show('coins')">Open</button></div>
-<div class="card">📱<h3>SMM ORDERS</h3><button onclick="show('smm')">Open</button></div>
-<div class="card">🎁<h3>REFER A FRIEND</h3><button onclick="show('refer')">Open</button></div>
-<div class="card">🎮<h3>OTHER GAMES</h3><button onclick="show('other')">Open</button></div>
-</div>
-<h2>Featured Products</h2>
-<div class="grid">
-<div class="card">LEVEL UP PASS</div>
-<div class="card">Weekly Membership</div>
-</div>
-<div class="banner" style="margin-top:20px">
-Transaction ID not found?<br>Contact Admin
-</div>
-</section>
 
-<section id="uid" class="page">
-<button onclick="show('home')">← Back Home</button>
-<h2>💎 UIDCODE TOP UP</h2>
-<p>একটি প্যাকেজ নির্বাচন করুন</p>
-<div id="products"></div>
-<h3>Player UID</h3>
-<input id="uidInput" inputmode="numeric" placeholder="Enter Free Fire UID">
-<button onclick="order()">Continue</button>
-</section>
+<h2>💎 Select Recharge</h2>
+<div class="sub">Select your diamond package</div>
 
-<section id="coins" class="page">
-<button onclick="show('home')">← Back</button>
-<h2>Free Diamond by Coin</h2>
-<p>Coming Soon</p>
-</section>
-<section id="smm" class="page">
-<button onclick="show('home')">← Back</button>
-<h2>SMM ORDERS</h2><p>Coming Soon</p>
-</section>
-<section id="refer" class="page">
-<button onclick="show('home')">← Back</button>
-<h2>REFER A FRIEND</h2><p>Coming Soon</p>
-</section>
-<section id="other" class="page">
-<button onclick="show('home')">← Back</button>
-<h2>OTHER GAMES</h2><p>Coming Soon</p>
-</section>
-</main>
-<nav>
-<button onclick="show('home')">Home</button>
-<button onclick="show('home')">Add Money</button>
-<button onclick="show('home')">Orders</button>
-<button onclick="show('home')">Codes</button>
-<button onclick="show('coins')">Coins</button>
-<button onclick="show('home')">Profile</button>
-</nav>
-<footer>© 2026 Gamer Bazar</footer>
+<div class="grid" id="list"></div>
+
+<div class="bottom">
+<span><b>⌂</b>Home</span>
+<span><b>▣</b>Add Money</span>
+<span><b>▤</b>Orders</span>
+</div>
+
 <script>
-let selected=null;
-const packages=[
-["25 Diamonds",20],["50 Diamonds",35],["100 Diamonds",75],
-["115 Diamonds",79],["240 Diamonds",158],["355 Diamonds",237],
-["480 Diamonds",316],["505 Diamonds",336],["610 Diamonds",400],
-["725 Diamonds",479],["850 Diamonds",558],["1015 Diamonds",680],
-["1240 Diamonds",800],["1850 Diamonds",1200],["2530 Diamonds",1610],
-["5060 Diamonds",3220],["10120 Diamonds",6440],
-["Weekly Membership",158],["Weekly Lite",40],["Monthly Membership",790]
+const packs=[
+["25 Diamonds","20 TK"],["50 Diamonds","35 TK"],
+["100 Diamonds","75 TK"],["115 Diamonds","79 TK"],
+["240 Diamonds","158 TK"],["355 Diamonds","237 TK"],
+["480 Diamonds","316 TK"],["505 Diamonds","336 TK"],
+["610 Diamonds","400 TK"],["725 Diamonds","479 TK"],
+["850 Diamonds","558 TK"],["1015 Diamonds","680 TK"],
+["1240 Diamonds","800 TK"],["1850 Diamonds","1200 TK"],
+["2530 Diamonds","1610 TK"],["5060 Diamonds","3220 TK"],
+["10120 Diamonds","6440 TK"],
+["Monthly Membership","790 TK"],
+["Weekly Membership","158 TK"],["Weekly Lite","40 TK"]
 ];
-document.getElementById("products").innerHTML=packages.map((p,i)=>
-`<div class="package"><b>${p[0]}</b><br>৳${p[1]}
-<button onclick="selectPackage(${i},this)">Select</button></div>`
-).join("");
-function show(id){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-window.scrollTo(0,0);
-}
-function selectPackage(i,btn){
-selected=packages[i];
-document.querySelectorAll(".package").forEach(p=>p.style.borderColor="#17649b");
-btn.parentElement.style.borderColor="#00d5ff";
-}
-function order(){
-const uid=document.getElementById("uidInput").value.trim();
-if(!selected){alert("প্রথমে একটি প্যাকেজ নির্বাচন করুন");return;}
-if(!/^[0-9]{5,15}$/.test(uid)){alert("সঠিক Player UID দিন");return;}
-alert("Demo order not created.\nPackage: "+selected[0]+"\nPrice: ৳"+selected[1]+"\nUID: "+uid+"\nActual orders have not been launched yet.");
+
+document.getElementById("list").innerHTML=packs.map(p=>`
+<div class="item">
+ <div class="diamond">💎</div>
+ <div class="info">
+  <div class="name">${p[0]}</div>
+  <div class="price">${p[1]}</div>
+ </div>
+ <button onclick="selectPack('${p[0]}','${p[1]}')">SELECT</button>
+</div>`).join("");
+
+function selectPack(name,price){
+ alert("Selected: "+name+"\nPrice: "+price+"\nএটি শুধু ডেমো।");
 }
 </script>
 </body>
