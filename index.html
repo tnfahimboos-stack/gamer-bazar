@@ -3,268 +3,130 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ffffff">
 <title>Gamer Bazar</title>
-
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;background:#f8f9fb;color:#222;
- font-family:Arial,"Noto Sans Bengali",sans-serif;
- padding-bottom:85px
-}
-:root{--orange:#ff7900;--light:#fff1e5;--gray:#777}
-header{
- background:white;padding:15px;display:flex;
- align-items:center;gap:12px;
- box-shadow:0 2px 10px #0000000d;
- position:sticky;top:0;z-index:5
-}
-.logo{
- width:45px;height:45px;border-radius:50%;
- background:var(--orange);color:white;
- display:grid;place-items:center;
- font-size:20px;font-weight:bold
-}
-.brand{font-size:19px;font-weight:800;color:var(--orange)}
-.tagline{font-size:11px;color:#777;margin-top:3px}
+body{margin:0;background:#f8f9fb;color:#222;font-family:Arial,sans-serif;padding-bottom:80px}
+:root{--orange:#ff7900}
+header{background:white;padding:14px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 8px #ddd;position:sticky;top:0;z-index:5}
+.logo{width:45px;height:45px;border-radius:50%;background:var(--orange);color:white;display:grid;place-items:center;font-weight:bold;font-size:20px}
+.brand{color:var(--orange);font-weight:bold;font-size:19px}
 main{max-width:600px;margin:auto;padding:15px}
-.page{display:none}
-.page.active{display:block}
-h2{font-size:20px;margin:12px 0;color:#333}
-p{line-height:1.5}
-.banner{
- background:linear-gradient(120deg,#ff7900,#ff9e35);
- color:white;border-radius:17px;padding:23px 18px;
- margin:8px 0 20px
-}
-.banner h2{color:white;font-size:25px;margin:0 0 8px}
-.banner p{margin:0;font-size:13px}
-.section-title{font-size:17px;font-weight:bold;margin:20px 0 12px}
-.grid{
- display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
- gap:11px
-}
-.service{
- background:white;border-radius:13px;padding:17px 10px;
- text-align:center;border:1px solid #eee;
- cursor:pointer
-}
-.service .emoji{font-size:26px}
-.service strong{display:block;margin-top:8px}
-.card{
- background:white;border:1px solid #eee;border-radius:13px;
- padding:14px;margin-bottom:12px
-}
-.package{
- display:flex;align-items:center;justify-content:space-between;
- gap:8px;background:white;border:1px solid #eee;
- border-radius:12px;padding:12px;margin-bottom:9px
-}
-.diamond{
- width:38px;height:38px;border-radius:10px;
- background:#e9f7ff;display:grid;place-items:center;
- font-size:20px;flex-shrink:0
-}
-.package-info{flex:1}
-.package-info strong{font-size:14px}
-.price{font-size:13px;color:var(--orange);font-weight:bold;margin-top:5px}
-button{
- border:0;border-radius:9px;background:var(--orange);
- color:white;padding:10px 14px;font-weight:bold;
- cursor:pointer;font-size:13px
-}
-button.secondary{background:var(--light);color:var(--orange)}
+.page{display:none}.page.active{display:block}
+h2{font-size:20px}
+.banner{background:linear-gradient(120deg,#ff7900,#ffa33e);color:white;padding:22px;border-radius:15px;margin:10px 0 20px}
+.banner h2{color:white}
+.card,.service,.package{background:white;border:1px solid #eee;border-radius:12px;padding:14px;margin-bottom:11px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.service{text-align:center;cursor:pointer}
+.service span{font-size:25px}
+.package{display:flex;align-items:center;gap:10px}
+.diamond{font-size:24px;background:#e9f7ff;padding:8px;border-radius:9px}
+.package-info{flex:1;font-size:14px;font-weight:bold}
+.price{color:var(--orange);font-size:13px;margin-top:5px}
+button{background:var(--orange);color:white;border:0;border-radius:8px;padding:11px 14px;font-weight:bold;cursor:pointer}
+button.secondary{background:#fff0e4;color:var(--orange)}
 button.gray{background:#eee;color:#444}
-input,select,textarea{
- width:100%;padding:13px;border:1px solid #ddd;
- border-radius:9px;font-size:15px;margin:7px 0 14px;
- background:white
-}
+input{width:100%;padding:13px;border:1px solid #ddd;border-radius:8px;margin:8px 0 14px;font-size:15px}
 label{font-size:13px;font-weight:bold}
-.small{font-size:12px;color:var(--gray)}
-.notice{
- background:#fff5e9;border:1px solid #ffdfc0;
- padding:12px;border-radius:10px;font-size:13px;
- line-height:1.6;margin:12px 0
-}
-.bottom{
- position:fixed;bottom:0;left:0;right:0;
- background:white;box-shadow:0 -2px 12px #00000012;
- display:flex;justify-content:space-around;
- padding:9px 2px calc(9px + env(safe-area-inset-bottom));
- z-index:10
-}
-.nav{
- background:none;color:#777;padding:4px 2px;
- display:flex;flex-direction:column;align-items:center;
- gap:4px;font-size:10px;flex:1
-}
-.nav span{font-size:20px}
-.nav.active{color:var(--orange)}
-.row{display:flex;justify-content:space-between;gap:10px;align-items:center}
-.status{color:#b36a00;background:#fff0d9;padding:5px 8px;border-radius:7px;font-size:11px}
-hr{border:0;border-top:1px solid #eee;margin:14px 0}
+.small{font-size:12px;color:#777;line-height:1.5}
+.notice{background:#fff3e6;border:1px solid #ffdfc0;padding:12px;border-radius:9px;font-size:13px;line-height:1.5}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.status{font-size:12px;background:#fff0d9;color:#9b5900;padding:5px 8px;border-radius:7px}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:8px 2px;box-shadow:0 -2px 10px #ddd;z-index:5}
+.nav{background:none;color:#777;padding:4px 2px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;flex:1}
+.nav span{font-size:20px}.nav.active{color:var(--orange)}
 .hidden{display:none}
 </style>
 </head>
-
 <body>
 
 <header>
  <div class="logo">GB</div>
  <div>
   <div class="brand">GAMER BAZAR</div>
-  <div class="tagline">Your Gaming Top-up Store</div>
+  <div class="small">Your Gaming Top-up Store</div>
  </div>
 </header>
 
 <main>
 
-<!-- HOME -->
 <section class="page active" id="home">
  <div class="banner">
   <h2>Welcome to Gamer Bazar</h2>
-  <p>আপনার পছন্দের গেমিং টপ-আপ সেবা এক জায়গায়।</p>
-  <br>
-  <button class="secondary" onclick="showPage('recharge')">Recharge Now →</button>
+  <p>আপনার পছন্দের গেমিং টপ-আপ সেবা।</p>
+  <button class="secondary" onclick="showPage('recharge')">Recharge Now</button>
  </div>
-
- <div class="section-title">আমাদের সার্ভিস</div>
+ <h3>আমাদের সার্ভিস</h3>
  <div class="grid">
-  <div class="service" onclick="showPage('recharge')">
-   <div class="emoji">💎</div><strong>Diamond</strong>
-  </div>
-  <div class="service" onclick="showPage('addmoney')">
-   <div class="emoji">💰</div><strong>Add Money</strong>
-  </div>
-  <div class="service" onclick="showPage('orders')">
-   <div class="emoji">📦</div><strong>My Orders</strong>
-  </div>
-  <div class="service" onclick="showPage('profile')">
-   <div class="emoji">👤</div><strong>My Profile</strong>
-  </div>
- </div>
-
- <div class="section-title">কেন Gamer Bazar?</div>
- <div class="card">
-  <p>💎 বিভিন্ন ডায়মন্ড প্যাকেজ</p>
-  <p>📦 অর্ডারের তথ্য দেখার সুবিধা</p>
-  <p>🧾 পেমেন্ট তথ্য জমা দেওয়ার ফর্ম</p>
-  <p>📱 সহজ মোবাইল ব্যবহার</p>
+  <div class="service" onclick="showPage('recharge')"><span>💎</span><p>Diamond</p></div>
+  <div class="service" onclick="showPage('addmoney')"><span>💰</span><p>Add Money</p></div>
+  <div class="service" onclick="showPage('orders')"><span>📦</span><p>Orders</p></div>
+  <div class="service" onclick="showPage('profile')"><span>👤</span><p>Profile</p></div>
  </div>
 </section>
 
-<!-- RECHARGE -->
 <section class="page" id="recharge">
  <h2>💎 Select Recharge</h2>
- <p class="small">আপনার পছন্দের প্যাকেজ নির্বাচন করুন।</p>
  <div id="packages"></div>
 </section>
 
-<!-- UID -->
 <section class="page" id="uidpage">
  <h2>Player Information</h2>
  <div class="card">
-  <div class="row">
-   <strong id="selectedName"></strong>
-   <strong id="selectedPrice" style="color:var(--orange)"></strong>
-  </div>
+  <div class="row"><b id="selectedName"></b><b id="selectedPrice" style="color:var(--orange)"></b></div>
   <hr>
   <label>Free Fire Player UID</label>
-  <input id="playerUid" type="text" inputmode="numeric" placeholder="আপনার Player UID লিখুন">
-  <button style="width:100%" onclick="goPayment()">Continue</button>
-  <button class="gray" style="width:100%;margin-top:8px" onclick="showPage('recharge')">Back</button>
+  <input id="playerUid" inputmode="numeric" placeholder="Player UID লিখুন">
+  <button style="width:100%" onclick="continueOrder()">Continue</button>
  </div>
 </section>
 
-<!-- PAYMENT -->
-<section class="page" id="payment">
- <h2>Payment Information</h2>
+<section class="page" id="confirm">
+ <h2>Confirm Order</h2>
  <div class="card">
-  <div class="row"><strong id="payPackage"></strong><strong id="payPrice" style="color:var(--orange)"></strong></div>
-  <p class="small">Player UID: <strong id="payUid"></strong></p>
-  <hr>
-  <div class="notice">
-   এটি এখনো প্রস্তুতিমূলক ফর্ম। এখানে কোনো বাস্তব পেমেন্ট নম্বর দেওয়া নেই।
-   পেমেন্ট ব্যবস্থা অভিভাবকের মাধ্যমে বৈধভাবে সেটআপ করার পর চালু করতে হবে।
-  </div>
-  <label>পেমেন্ট পদ্ধতি</label>
-  <select id="paymentMethod">
-   <option value="">নির্বাচন করুন</option>
-   <option>bKash</option>
-   <option>Nagad</option>
-  </select>
-  <label>Transaction ID</label>
-  <input id="trxId" placeholder="Transaction ID">
-  <label>প্রেরকের নম্বর</label>
-  <input id="senderNumber" inputmode="numeric" placeholder="পেমেন্ট প্রেরকের নম্বর">
-  <button style="width:100%" onclick="submitOrder()">Submit Order</button>
-  <p class="small">এই ফর্মের তথ্য শুধু এই ডিভাইসের ব্রাউজারে পরীক্ষামূলকভাবে রাখা হবে।</p>
+  <p>Package: <b id="confirmProduct"></b></p>
+  <p>Price: <b id="confirmPrice"></b></p>
+  <p>Player UID: <b id="confirmUid"></b></p>
+  <div class="notice">অর্ডার জমা দিতে Google দিয়ে লগইন করতে হবে। এটি অর্ডারের অনলাইন রেকর্ড তৈরি করবে, পেমেন্ট বা ডেলিভারি নিশ্চিত করবে না।</div>
+  <br>
+  <button style="width:100%" onclick="placeOrder()">Submit Order</button>
  </div>
 </section>
 
-<!-- ADD MONEY -->
-<section class="page" id="addmoney">
- <h2>💰 Add Money</h2>
- <div class="card">
-  <div class="notice">
-   Add Money সেবা এখনো চালু হয়নি। অভিভাবকের মাধ্যমে পেমেন্ট ব্যবস্থা তৈরি হলে এখানে চালু করা যাবে।
-  </div>
-  <label>টাকার পরিমাণ</label>
-  <input type="number" placeholder="Amount" disabled>
-  <button class="gray" disabled>Coming Soon</button>
- </div>
-</section>
-
-<!-- ORDERS -->
 <section class="page" id="orders">
  <h2>📦 My Orders</h2>
- <div id="orderList"></div>
+ <div id="orderList"><p class="small">অর্ডার দেখতে Google দিয়ে লগইন করুন।</p></div>
+ <button onclick="loadOrders()">Refresh Orders</button>
 </section>
 
-<!-- CARDS -->
+<section class="page" id="addmoney">
+ <h2>💰 Add Money</h2>
+ <div class="notice">পেমেন্ট ব্যবস্থা এখনো চালু হয়নি।</div>
+</section>
+
 <section class="page" id="cards">
  <h2>💳 Cards</h2>
- <div class="card">
-  <p>আপনার কার্ড সুবিধা এখনো চালু হয়নি।</p>
-  <span class="status">Coming Soon</span>
- </div>
+ <div class="card">Coming Soon</div>
 </section>
 
-<!-- COINS -->
 <section class="page" id="coins">
  <h2>🪙 Coins</h2>
- <div class="card">
-  <h2 style="color:var(--orange)">0 Coins</h2>
-  <p class="small">কয়েন সুবিধা ভবিষ্যতে যুক্ত করা হবে।</p>
- </div>
+ <div class="card">0 Coins</div>
 </section>
 
-<!-- PROFILE -->
 <section class="page" id="profile">
  <h2>👤 My Profile</h2>
  <div class="card">
   <div class="logo">GB</div>
-  <h3>Gamer Bazar User</h3>
-  <p class="small">Guest Account</p>
-  <hr>
-  <p>মোট অর্ডার: <strong id="totalOrders">0</strong></p>
-  <p>অ্যাকাউন্ট: Guest</p>
+  <h3 id="userName">Guest User</h3>
+  <p class="small" id="userEmail">লগইন করা হয়নি</p>
+  <button id="loginBtn" onclick="login()">Google Login</button>
+  <button id="logoutBtn" class="gray hidden" onclick="logout()">Logout</button>
  </div>
-
- <h2>Admin Panel Preview</h2>
- <div class="notice">
-  এটি শুধু একই ডিভাইসে পরীক্ষামূলক অর্ডার দেখায়। এটি নিরাপদ Admin Login নয় এবং অন্য ব্যবহারকারীর অর্ডার দেখতে পারে না।
-  আসল Admin Panel-এর জন্য Firebase Authentication ও নিরাপদ সার্ভার নিয়ম প্রয়োজন।
- </div>
- <button onclick="showAdmin()" style="width:100%">View Local Test Orders</button>
- <div id="adminArea" class="hidden">
-  <hr>
-  <h3>Local Test Orders</h3>
-  <div id="adminOrders"></div>
- </div>
+ <div class="notice">Admin Panel পরে নিরাপদ সার্ভার অনুমতি দিয়ে তৈরি করতে হবে। সাধারণ Google Login দিয়ে কাউকে Admin করা হবে না।</div>
 </section>
 
 </main>
@@ -278,192 +140,176 @@ hr{border:0;border-top:1px solid #eee;margin:14px 0}
  <button class="nav" data-page="profile" onclick="showPage('profile')"><span>♙</span>Profile</button>
 </nav>
 
-<script>
-const products = [
- ["25 Diamonds",20],
- ["50 Diamonds",35],
- ["100 Diamonds",75],
- ["115 Diamonds",79],
- ["240 Diamonds",158],
- ["355 Diamonds",237],
- ["480 Diamonds",316],
- ["505 Diamonds",336],
- ["610 Diamonds",400],
- ["725 Diamonds",479],
- ["850 Diamonds",558],
- ["1015 Diamonds",680],
- ["1240 Diamonds",800],
- ["1850 Diamonds",1200],
- ["2530 Diamonds",1610],
- ["5060 Diamonds",3220],
- ["10120 Diamonds",6440],
- ["Weekly Membership",158],
- ["Weekly Lite",40],
- ["Monthly Membership",790]
+<script type="module">
+import {initializeApp}
+ from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
+import {
+ getAuth,GoogleAuthProvider,signInWithPopup,
+ onAuthStateChanged,signOut
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+import {
+ getFirestore,collection,addDoc,getDocs,
+ query,where,serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+const firebaseConfig={
+ apiKey:"AIzaSyBZgHYAqcbf4FP1cA0M5nblDbGFlye9iH4",
+ authDomain:"fahim-d606c.firebaseapp.com",
+ projectId:"fahim-d606c",
+ storageBucket:"fahim-d606c.firebasestorage.app",
+ messagingSenderId:"780598083996",
+ appId:"1:780598083996:web:1122099bb23bba3e94c859",
+ measurementId:"G-8E8ZR8H8QT"
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+const provider=new GoogleAuthProvider();
+
+const products=[
+ ["25 Diamonds",20],["50 Diamonds",35],
+ ["100 Diamonds",75],["115 Diamonds",79],
+ ["240 Diamonds",158],["355 Diamonds",237],
+ ["480 Diamonds",316],["505 Diamonds",336],
+ ["610 Diamonds",400],["725 Diamonds",479],
+ ["850 Diamonds",558],["1015 Diamonds",680],
+ ["1240 Diamonds",800],["1850 Diamonds",1200],
+ ["2530 Diamonds",1610],["5060 Diamonds",3220],
+ ["10120 Diamonds",6440],["Weekly Membership",158],
+ ["Weekly Lite",40],["Monthly Membership",790]
 ];
 
-let selectedProduct = null;
-let orders = [];
+let user=null;
+let selected=null;
+let currentUid="";
 
-try{
- orders = JSON.parse(localStorage.getItem("gb_test_orders") || "[]");
-}catch(e){orders=[];}
-
-function saveOrders(){
- localStorage.setItem("gb_test_orders",JSON.stringify(orders));
-}
-
-function showPage(id){
+window.showPage=(id)=>{
  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
  document.getElementById(id).classList.add("active");
-
- document.querySelectorAll(".nav").forEach(n=>{
-  n.classList.toggle("active",n.dataset.page===id);
- });
-
- if(id==="orders") renderOrders();
- if(id==="profile") updateProfile();
+ document.querySelectorAll(".nav").forEach(n=>n.classList.toggle("active",n.dataset.page===id));
+ if(id==="orders")loadOrders();
  window.scrollTo(0,0);
-}
+};
 
 function renderPackages(){
- const area=document.getElementById("packages");
- area.innerHTML="";
- products.forEach((p,i)=>{
-  area.innerHTML+=`
-   <div class="package">
-    <div class="diamond">💎</div>
-    <div class="package-info">
-     <strong>${p[0]}</strong>
-     <div class="price">৳ ${p[1]}</div>
-    </div>
-    <button onclick="selectProduct(${i})">Select</button>
-   </div>`;
- });
+ document.getElementById("packages").innerHTML=products.map((p,i)=>`
+ <div class="package">
+  <div class="diamond">💎</div>
+  <div class="package-info">${p[0]}<div class="price">৳ ${p[1]}</div></div>
+  <button onclick="selectPackage(${i})">Select</button>
+ </div>`).join("");
 }
 
-function selectProduct(index){
- selectedProduct=products[index];
- document.getElementById("selectedName").textContent=selectedProduct[0];
- document.getElementById("selectedPrice").textContent="৳ "+selectedProduct[1];
+window.selectPackage=(i)=>{
+ selected=products[i];
+ document.getElementById("selectedName").textContent=selected[0];
+ document.getElementById("selectedPrice").textContent="৳ "+selected[1];
  document.getElementById("playerUid").value="";
  showPage("uidpage");
-}
+};
 
-function goPayment(){
- const uid=document.getElementById("playerUid").value.trim();
-
- if(!uid){
-  alert("Player UID লিখুন");
-  return;
- }
- if(!/^[0-9]{5,20}$/.test(uid)){
+window.continueOrder=()=>{
+ currentUid=document.getElementById("playerUid").value.trim();
+ if(!/^[0-9]{5,20}$/.test(currentUid)){
   alert("সঠিক Player UID লিখুন");
   return;
  }
+ document.getElementById("confirmProduct").textContent=selected[0];
+ document.getElementById("confirmPrice").textContent="৳ "+selected[1];
+ document.getElementById("confirmUid").textContent=currentUid;
+ showPage("confirm");
+};
 
- document.getElementById("payPackage").textContent=selectedProduct[0];
- document.getElementById("payPrice").textContent="৳ "+selectedProduct[1];
- document.getElementById("payUid").textContent=uid;
- showPage("payment");
-}
+window.login=async()=>{
+ try{
+  await signInWithPopup(auth,provider);
+ }catch(e){
+  alert("Login হয়নি: "+e.message);
+ }
+};
 
-function submitOrder(){
- const method=document.getElementById("paymentMethod").value;
- const trx=document.getElementById("trxId").value.trim();
- const sender=document.getElementById("senderNumber").value.trim();
+window.logout=async()=>{
+ try{await signOut(auth);alert("Logout হয়েছে");}
+ catch(e){alert(e.message);}
+};
 
- if(!method || !trx || !sender){
-  alert("সব তথ্য পূরণ করুন");
+onAuthStateChanged(auth,async(u)=>{
+ user=u;
+ document.getElementById("userName").textContent=u?(u.displayName||"User"):"Guest User";
+ document.getElementById("userEmail").textContent=u?u.email:"লগইন করা হয়নি";
+ document.getElementById("loginBtn").classList.toggle("hidden",!!u);
+ document.getElementById("logoutBtn").classList.toggle("hidden",!u);
+});
+
+window.placeOrder=async()=>{
+ if(!selected || !currentUid){
+  alert("আগে প্যাকেজ ও UID নির্বাচন করুন");
   return;
  }
+ if(!auth.currentUser){
+  alert("আগে Profile থেকে Google Login করুন");
+  showPage("profile");
+  return;
+ }
+ try{
+  await addDoc(collection(db,"orders"),{
+   userId:auth.currentUser.uid,
+   product:selected[0],
+   price:selected[1],
+   playerUid:currentUid,
+   status:"pending",
+   createdAt:serverTimestamp()
+  });
+  alert("অর্ডার Firestore-এ জমা হয়েছে। এটি পেমেন্ট বা ডেলিভারি নিশ্চিত করে না।");
+  showPage("orders");
+ }catch(e){
+  console.error(e);
+  alert("অর্ডার জমা হয়নি: "+e.message);
+ }
+};
 
- const uid=document.getElementById("playerUid").value.trim();
-
- const order={
-  id:"GB"+Date.now(),
-  product:selectedProduct[0],
-  price:selectedProduct[1],
-  uid:uid,
-  method:method,
-  trx:trx,
-  sender:sender,
-  status:"পরীক্ষামূলক জমা",
-  date:new Date().toLocaleString("bn-BD")
- };
-
- orders.unshift(order);
- saveOrders();
-
- alert("পরীক্ষামূলক অর্ডার এই ডিভাইসে সংরক্ষিত হয়েছে। এটি বাস্তব পেমেন্ট যাচাই বা ডায়মন্ড ডেলিভারি নয়।");
-
- document.getElementById("trxId").value="";
- document.getElementById("senderNumber").value="";
- document.getElementById("paymentMethod").value="";
-
- showPage("orders");
-}
-
-function renderOrders(){
+window.loadOrders=async()=>{
  const area=document.getElementById("orderList");
-
- if(orders.length===0){
-  area.innerHTML='<div class="card">এখনো কোনো অর্ডার নেই।</div>';
+ if(!auth.currentUser){
+  area.innerHTML="<p>অর্ডার দেখতে Google Login করুন।</p>";
   return;
  }
-
- area.innerHTML=orders.map(o=>`
-  <div class="card">
-   <div class="row">
-    <strong>${o.product}</strong>
-    <span class="status">${o.status}</span>
-   </div>
-   <p>UID: ${escapeText(o.uid)}</p>
-   <p>মূল্য: ৳ ${o.price}</p>
-   <p class="small">Order ID: ${escapeText(o.id)}</p>
-   <p class="small">${escapeText(o.date)}</p>
-  </div>
- `).join("");
-}
-
-function showAdmin(){
- const area=document.getElementById("adminArea");
- area.classList.toggle("hidden");
-
- const list=document.getElementById("adminOrders");
-
- if(orders.length===0){
-  list.innerHTML="<p>কোনো পরীক্ষামূলক অর্ডার নেই।</p>";
-  return;
+ area.innerHTML="<p>অর্ডার লোড হচ্ছে...</p>";
+ try{
+  const q=query(collection(db,"orders"),
+   where("userId","==",auth.currentUser.uid));
+  const result=await getDocs(q);
+  if(result.empty){
+   area.innerHTML="<div class='card'>এখনো কোনো অর্ডার নেই।</div>";
+   return;
+  }
+  area.innerHTML="";
+  result.forEach(doc=>{
+   const o=doc.data();
+   const card=document.createElement("div");
+   card.className="card";
+   const title=document.createElement("b");
+   title.textContent=o.product;
+   const uid=document.createElement("p");
+   uid.textContent="UID: "+o.playerUid;
+   const price=document.createElement("p");
+   price.textContent="মূল্য: ৳ "+o.price;
+   const status=document.createElement("span");
+   status.className="status";
+   status.textContent=o.status==="pending"?"অপেক্ষমাণ":o.status;
+   card.append(title,uid,price,status);
+   area.appendChild(card);
+  });
+ }catch(e){
+  console.error(e);
+  area.textContent="অর্ডার লোড হয়নি: "+e.message;
  }
-
- list.innerHTML=orders.map(o=>`
-  <div class="card">
-   <strong>${o.product}</strong>
-   <p>UID: ${escapeText(o.uid)}</p>
-   <p>মূল্য: ৳ ${o.price}</p>
-   <p>পদ্ধতি: ${escapeText(o.method)}</p>
-   <p>Transaction ID: ${escapeText(o.trx)}</p>
-   <p>প্রেরক: ${escapeText(o.sender)}</p>
-   <span class="status">${o.status}</span>
-  </div>
- `).join("");
-}
-
-function updateProfile(){
- document.getElementById("totalOrders").textContent=orders.length;
-}
-
-function escapeText(value){
- return String(value).replace(/[&<>"']/g,c=>({
-  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
- }[c]));
-}
+};
 
 renderPackages();
-renderOrders();
-updateProfile();
 </script>
-
 </body>
 </html>
